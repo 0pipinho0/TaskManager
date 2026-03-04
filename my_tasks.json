@@ -1,0 +1,39 @@
+[
+  {
+    "type": "Regгlar",
+    "title": "Купить молоко",
+    "description": "",
+    "priority": "средний",
+    "completed": false,
+    "created_at": "2026-03-04T11:29:20.759078",
+    "completed_at": null
+  },
+  {
+    "type": "Regгlar",
+    "title": "Сделать отчет",
+    "description": "Заполнить таблицы",
+    "priority": "высокий",
+    "completed": false,
+    "created_at": "2026-03-04T11:29:20.760083",
+    "completed_at": null
+  },
+  {
+    "type": "Important",
+    "title": "Встреча с клиентом",
+    "description": "Подготовить презентацию",
+    "priority": "высокий",
+    "completed": false,
+    "created_at": "2026-03-04T11:29:20.760083",
+    "completed_at": null,
+    "deadline": "завтра 10:00"
+  },
+  {
+    "type": "Regгlar",
+    "title": "Позвонить партнеру",
+    "description": "Обсудить контракт",
+    "priority": "высокий",
+    "completed": false,
+    "created_at": "2026-03-04T11:29:20.760083",
+    "completed_at": null
+  }
+]
