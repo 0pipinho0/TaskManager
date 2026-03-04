@@ -88,4 +88,37 @@ class Task:
         else:
             info += "Статус: Не выполнена"
 
-        return info
+            return info
+
+class ImportantTask(Task):
+    def __init__(self, title: str, description: str = "",
+            deadline: str = "сегодня"):
+        super().__init__(title, description, priority="высокий")
+        self.__deadline = deadline
+        self.__reminder_set = False
+
+    @property
+    def deadline(self):
+        return self.__deadline
+    @deadline.setter
+    def deadline(self, new_deadline):
+        if isinstance(new_deadline, str) and len(new_deadline.strip()) > 0:
+            self.__deadline = new_deadline
+        else:
+            raise ValueError("Дедлайн не может быть пустым")
+
+    def set_reminder(self):
+        self.__reminder_set = True
+        print(f" Напоминание установлено для задачи '{self.title}'")
+
+        # Переопределяем метод __str__
+    def __str__(self):
+        base_str = super().__str__()
+        reminder = " " if self.__reminder_set else "⏰"
+        return f"{base_str} [Дедлайн: {self.__deadline}] {reminder}"
+
+    def get_info(self):
+        base_info = super().get_info()
+        base_info += f"\nДедлайн: {self.__deadline}"
+        base_info += f"\nНапоминание: {'установлено' if self.__reminder_set else 'не установлено'}"
+        return base_info
