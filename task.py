@@ -90,6 +90,36 @@ class Task:
 
             return info
 
+    @staticmethod
+    def validate_priority(priority):
+        valid_priorities = ["низкий", "средний", "высокий"]
+        return priority in valid_priorities
+
+    @staticmethod
+    def get_priority_emoji(priority):
+        emojis = {
+            "низкий": "⬇️",
+            "средний": "➡️",
+            "высокий": "⬆️"
+        }
+        return emojis.get(priority, "❓")
+
+    @classmethod
+    def create_from_string(cls, task_string: str):
+        try:
+            parts = task_string.split('|')
+            title = parts[0].strip()
+            description = parts[1].strip() if len(parts) > 1 else ""
+            priority = parts[2].strip() if len(parts) > 2 else "средний"
+
+            if not cls.validate_priority(priority):
+                priority = "средний"
+
+            return cls(title, description, priority)
+        except Exception as e:
+            print(f"Ошибка создания задачи из строки: {e}")
+            return None
+
 class ImportantTask(Task):
     def __init__(self, title: str, description: str = "",
             deadline: str = "сегодня"):
@@ -122,3 +152,4 @@ class ImportantTask(Task):
         base_info += f"\nДедлайн: {self.__deadline}"
         base_info += f"\nНапоминание: {'установлено' if self.__reminder_set else 'не установлено'}"
         return base_info
+
